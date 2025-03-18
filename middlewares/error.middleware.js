@@ -1,7 +1,6 @@
 const errorMiddleware = (err, req, res, next) => {
     try{
-        let error = {...error};
-        error.message = err.message;
+        let error = {...err};
         console.log(err);
 
         // Mongoose bad ObjectId
