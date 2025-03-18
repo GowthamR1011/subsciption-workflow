@@ -4,8 +4,14 @@ import  authRouter  from './routes/auth.routes.js';
 import userRouter from './routes/user.routes.js';
 import subscriptionRouter from './routes/subsciption.routes.js';
 import connectDB from './database/mongodb.js';
+import errorMiddleware from './middlewares/error.middleware.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
+
+app.use(express.json()); // Body parser
+app.use(express.urlencoded({ extended: false })); // Body parser
+app.use(cookieParser()); // Cookie parser
 
 
 
@@ -13,6 +19,10 @@ const app = express();
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/subscriptions', subscriptionRouter);
+
+
+// Error Middleware
+app.use(errorMiddleware);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
