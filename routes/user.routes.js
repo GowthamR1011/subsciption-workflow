@@ -1,4 +1,6 @@
 import { Router } from "express";
+import { getUser } from "../controllers/user.controller.js";
+import { authMiddleware } from "../middlewares/auth.middleware.js";
 
 const userRouter = Router();
 
@@ -7,9 +9,7 @@ userRouter.get("/" , (req, res) => {
 });
 
 
-userRouter.get("/:id" , (req, res) => {
-    res.send({message:"GET User by ID"}).status(200);
-});
+userRouter.get("/:id" ,authMiddleware, getUser);
 
 
 userRouter.post("/" , (req, res) => {    
