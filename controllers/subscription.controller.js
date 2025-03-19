@@ -3,11 +3,12 @@ import mongoose from 'mongoose';
 
 
 export const createSubscription = async (req, res,next) => {
+    
     const session = await mongoose.startSession();
     session.startTransaction();
+    
     try{
         
-        // const {name,price,startDate,endDate} = req.body;
         const user = req.user;
 
         const newSubscription = await Subscription.create([{...req.body,user:user._id}],{session:session});

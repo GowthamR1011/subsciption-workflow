@@ -1,28 +1,31 @@
 import { Router } from "express";
-import { getUser } from "../controllers/user.controller.js";
+import { deleteUser, getUser, updateUser } from "../controllers/user.controller.js";
 import { authMiddleware } from "../middlewares/auth.middleware.js";
 
 const userRouter = Router();
 
-userRouter.get("/" , (req, res) => {
-    res.send({message:"GET All Users"}).status(200);
-});
+userRouter.get("/" ,authMiddleware, getUser);
+
+userRouter.put("/" , authMiddleware, updateUser);
 
 
-userRouter.get("/:id" ,authMiddleware, getUser);
+userRouter.delete("/" , authMiddleware,deleteUser);
 
 
-userRouter.post("/" , (req, res) => {    
-    res.send({message:"POST New user"}).status(201);
-});
+// Admin Route for later
+// userRouter.get("/:id" , (req, res) => {
+//     res.send({message:"GET All Users"}).status(200);
+// });
 
 
-userRouter.put("/:id" , (req, res) => {   
-    res.send({message:"PUT User by ID"}).status(200);
-});
 
-userRouter.delete("/:id" , (req, res) => {  
-    res.send({message:"DELETE User by ID"}).status(204);
-});
+
+// this is signup function
+// userRouter.post("/" , (req, res) => {    
+//     res.send({message:"POST New user"}).status(201);
+// });
+
+
+
 
 export default userRouter;
