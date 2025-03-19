@@ -2,7 +2,10 @@ import { Router } from "express";
 import { authMiddleware } from "../middlewares/auth.middleware.js";
 import { createSubscription,
     getUserSubscriptions,
-    getSubscriptionById } from "../controllers/subscription.controller.js";
+    getSubscriptionById,
+    updateSubscription,
+    cancelSubscription,
+    deleteSubscription } from "../controllers/subscription.controller.js";
 
 const subscriptionRouter = Router();
 
@@ -16,24 +19,18 @@ subscriptionRouter.get("/:id" ,authMiddleware, getSubscriptionById);
 
 subscriptionRouter.post("/" ,authMiddleware, createSubscription);
 
-subscriptionRouter.put("/:id" , (req, res) => {
-    res.send({message:"PUT Subscription by ID"}).status(200);
-});
+subscriptionRouter.put("/:id" ,authMiddleware, updateSubscription);
 
-subscriptionRouter.delete("/:id" , (req, res) => {
-    res.send({message:"DELETE Subscription by ID"}).status(204);
-});
+subscriptionRouter.delete("/:id" , authMiddleware, deleteSubscription);
 
 
+subscriptionRouter.put("/:id/cancel" , authMiddleware, cancelSubscription );
 
 
-subscriptionRouter.get("/users/:id" , (req, res) => {
-    res.send({message:"GET all subscriptions by User ID"}).status(200);
-});
-
-subscriptionRouter.put("/:id/cancel" , (req, res) => {
-    res.send({message:"Cancel Subscription by ID"}).status(200);
-});
+// Later with admin role
+// subscriptionRouter.get("/users/:id" , (req, res) => {
+//     res.send({message:"GET all subscriptions by User ID"}).status(200);
+// });
 
 
 

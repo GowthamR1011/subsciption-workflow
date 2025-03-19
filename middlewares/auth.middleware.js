@@ -5,14 +5,13 @@ import {JWT_SECRET} from '../config/config.js';
 export const authMiddleware = async (req, res, next) => {
     try{
         const token = req.cookies.token;
-        console.log(token)
         if(!token){
             const error = new Error("No Token Provided");
             error.statusCode = 401;
             throw error;
         }
 
-        const decoded = await jwt.verify(token,JWT_SECRET);
+        const decoded = jwt.verify(token,JWT_SECRET);
 
         const user = await User.findById(decoded.userId).select("-password");
         if(!user){
