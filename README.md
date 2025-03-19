@@ -22,7 +22,7 @@ A robust RESTful API for managing user subscriptions and authentication built wi
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone "https://github.com/GowthamR1011/subsciption-workflow.git"
 cd subscription-workflow
 ```
 
@@ -32,9 +32,8 @@ npm install
 ```
 
 3. Set up environment variables:
-   - Copy `.env.development.local` to `.env` for development
-   - Copy `.env.production.local` to `.env` for production
-   - Update the variables in the `.env` file with your configuration
+   - Setup `.env.development.local` to `.env` for development
+   - Setup `.env.production.local` to `.env` for production
 
 ## Project Structure
 
@@ -96,14 +95,7 @@ The application includes a centralized error handling middleware that processes 
 - Environment Variable Protection
 - Input Validation
 
-## Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
-## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+
